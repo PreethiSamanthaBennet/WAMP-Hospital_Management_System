@@ -1,0 +1,134 @@
+use HospitalManagementSystem
+
+CREATE TABLE Doctor(
+     Doctor_ID VARCHAR(50) NOT NULL PRIMARY KEY,
+     Doctor_Name VARCHAR(50) NOT NULL,
+     Doctor_Password VARCHAR(50) NOT NULL,
+     Doctor_Specialization VARCHAR(50) NOT NULL,
+     Doctor_Gender VARCHAR(50) NOT NULL,
+     Doctor_BloodGroup VARCHAR(50) NOT NULL,
+     Doctor_MobNum VARCHAR(50) NOT NULL
+     );
+
+
+
+CREATE TABLE Patient(
+     Patient_ID VARCHAR(50) NOT NULL PRIMARY KEY,
+     Patient_Name VARCHAR(50) NOT NULL,
+     Patient_Password VARCHAR(50) NOT NULL,
+     Patient_Age INT NOT NULL,
+     Patient_Gender VARCHAR(50) NOT NULL,
+     Patient_Height FLOAT NOT NULL,
+     Patient_Weight FLOAT NOT NULL,
+     Patient_BloodGroup VARCHAR(50) NOT NULL,
+     Patient_Symptoms VARCHAR(50) NOT NULL,
+     Patient_Appointment VARCHAR(50) NOT NULL,
+     Patient_Diagnosis VARCHAR(50) NOT NULL,
+     Patient_MobNum VARCHAR(50) NOT NULL,
+     Patient_Prescription VARCHAR(50) NOT NULL,
+     RoomNum VARCHAR(50) NOT NULL,
+     Doctor_ID VARCHAR(50) NOT NULL
+     );
+
+
+
+CREATE TABLE Nurse(
+     Nurse_ID VARCHAR(50) NOT NULL PRIMARY KEY,
+     Nurse_Name VARCHAR(50) NOT NULL,
+     Nurse_MobNum VARCHAR(50) NOT NULL,
+     Nurse_Shift VARCHAR(50) NOT NULL,
+     Nurse_WardName VARCHAR(50) NOT NULL,
+     Nurse_Gender VARCHAR(50) NOT NULL,
+     Doctor_ID VARCHAR(50) NOT NULL,
+     Patient_ID VARCHAR(50) NOT NULL
+     );
+
+
+
+CREATE TABLE WardBoy(
+     WB_ID VARCHAR(50) NOT NULL PRIMARY KEY,
+     WB_Name VARCHAR(50) NOT NULL,
+     WB_MobNum VARCHAR(50) NOT NULL,
+     WB_WardName VARCHAR(50) NOT NULL,
+     WB_Gender VARCHAR(50) NOT NULL,
+     Doctor_ID VARCHAR(50) NOT NULL,
+     Patient_ID VARCHAR(50) NOT NULL
+     );
+
+
+
+CREATE TABLE Room(
+     RoomNum VARCHAR(50) NOT NULL PRIMARY KEY,
+     FloorNum VARCHAR(50) NOT NULL,
+     Room_Type VARCHAR(50) NOT NULL,
+     Ward_Name VARCHAR(50) NOT NULL,
+     Status VARCHAR(50) NOT NULL,
+     Nurse_ID VARCHAR(50) NOT NULL
+     );
+
+
+
+CREATE TABLE Bill(
+     Bill_ID VARCHAR(50) NOT NULL PRIMARY KEY,
+     Bill_Amount INT NOT NULL,
+     Payment_Method VARCHAR(50) NOT NULL,
+     Pay_Date DATE NOT NULL,
+     Bill_Status VARCHAR(50) NOT NULL,
+     Patient_ID VARCHAR(50) NOT NULL
+     );
+
+
+ALTER TABLE Patient
+     ADD CONSTRAINT RoomNum_fk
+     FOREIGN KEY (RoomNum) REFERENCES Room(RoomNum);
+
+ALTER TABLE Patient
+     ADD CONSTRAINT Doctor_ID_fk
+     FOREIGN KEY (Doctor_ID) REFERENCES Doctor(Doctor_ID);
+
+
+ALTER TABLE Nurse
+     ADD CONSTRAINT Doctor_ID_fk
+     FOREIGN KEY (Doctor_ID) REFERENCES Doctor(Doctor_ID);
+
+ALTER TABLE Nurse
+     ADD CONSTRAINT Patient_ID_fk
+     FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID);
+
+
+ALTER TABLE WardBoy
+     ADD CONSTRAINT Patient_ID_fk
+     FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID);
+
+ALTER TABLE WardBoy
+     ADD CONSTRAINT Doctor_ID_fk
+     FOREIGN KEY (Doctor_ID) REFERENCES Doctor(Doctor_ID);
+
+
+ALTER TABLE Room
+     ADD CONSTRAINT Nurse_ID_fk
+     FOREIGN KEY (Nurse_ID) REFERENCES Nurse(Nurse_ID);
+
+
+ALTER TABLE Bill
+     ADD CONSTRAINT Patient_ID_fk
+     FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID);
+
+
+CREATE TABLE Organization(
+     Service_ID VARCHAR(50) NOT NULL PRIMARY KEY,
+     Service_Required VARCHAR(50) NOT NULL,
+     Doctor_ID VARCHAR(50) NOT NULL,
+     Patient_ID VARCHAR(50) NOT NULL,
+     RoomNum VARCHAR(50) NOT NULL,
+     WB_ID VARCHAR(50) NOT NULL,
+     Nurse_ID VARCHAR(50) NOT NULL,
+     Bill_ID VARCHAR(50) NOT NULL,
+
+     FOREIGN KEY (Doctor_ID) REFERENCES Doctor(Doctor_ID),
+     FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID),
+     FOREIGN KEY (RoomNum) REFERENCES Room(RoomNum),
+     FOREIGN KEY (WB_ID) REFERENCES WardBoy(WB_ID),
+     FOREIGN KEY (Nurse_ID) REFERENCES Nurse(Nurse_ID),
+     FOREIGN KEY (Bill_ID) REFERENCES Bill(Bill_ID)
+     );
