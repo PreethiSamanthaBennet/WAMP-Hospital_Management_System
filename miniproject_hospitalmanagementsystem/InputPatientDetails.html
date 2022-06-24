@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <body>
+   
+   <h1> INPUT PATIENT DETAILS </h1>
+    <form method="post" action="InputPatientDetails.php">
+    
+        Patient ID : <br>
+        <input type="text" name="Patient_ID">
+        <br>
+        
+        <br>
+
+        Password : <br>
+        <input type="text" name="Patient_Password">
+        <br>
+        
+        <br>
+        
+        Name : <br>
+        <input type="text" name="Patient_Name">
+        <br>
+        
+        <br>
+        
+        Age : <br>
+        <input type="number" name="Patient_Age">
+        <br>
+        
+        <br>
+        
+        Gender : <br>
+        <select name="Patient_Gender">
+            <option value="none" selected> Select an option </option>
+            <option value="male"> Male </option>
+            <option value="female"> Female </option>
+            <option value="other"> Other </option>
+       </select>
+       <br>
+       
+       <br>
+        
+        Height : <br>
+        <input type="number" name="Patient_Height">
+        <br>
+        
+        <br> 
+        
+        Weight : <br>
+        <input type="number" name="Patient_Weight">
+        <br>
+        
+        <br>
+        
+        Blood group : <br>
+        <input type="text" name="Patient_BloodGroup">
+        <br>
+        
+        <br>
+        
+        Symptoms : <br>
+        <input type="text" name="Patient_Symptoms">
+        <br>
+        
+        <br>
+        
+       <!-- Specialization : <br>
+        <select name="specialization">
+            <option value="none" selected> Select an option </option>
+            <option value="Paediatrician"> Paediatrician </option>
+            <option value="General Surgeon"> General Surgeon </option>
+            <option value="Cardiologist "> Cardiologist </option>
+            <option value="Dentist"> Dentist </option>
+            <option value="Pulmonologist"> Pulmonologist </option>
+       </select>
+       <br>
+        
+        <br> -->
+        
+        Appointment Time : <br>
+        <select name="Patient_Appointment">
+            <option value="none" selected> Select an option </option>
+            <option value="9.00 am - 10.00 am"> 9.00 am - 10.00 am </option>
+            <option value="10.00 am - 11.00 am"> 10.00 am - 11.00 am </option>
+            <option value="11.00 am - 12.00 pm"> 11.00 am - 12.00 pm </option>
+            <option value="2.00 pm - 3.00 pm"> 2.00 pm - 3.00 pm </option>
+            <option value="3.00 pm - 4.00 pm"> 3.00 pm - 4.00 pm </option>
+        </select>
+        <br>
+        
+        <br>
+        
+        Mobile Number : <br>
+        <input type="text" name="Patient_MobNum">
+        <br>
+        
+        <br>
+        
+        <input type="submit" name="save" value="save">
+        
+    </form>
+    
+  </body>
+</html>
